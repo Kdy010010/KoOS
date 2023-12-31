@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KoOS</title>
+</head>
+<body>
+    <h1>Welcome to KoOS</h1>
+    <label for="websiteUrl">웹 사이트 URL:</label>
+    <input type="text" id="websiteUrl">
+    <button onclick="runWebsite()">실행</button>
+    <div id="websiteContent"></div>
+</body>
+<script>
+    function runWebsite() {
+        var websiteUrl = document.getElementById("websiteUrl").value;
+        var websiteContent = document.getElementById("websiteContent");
+
+        // AJAX 요청을 통해 웹 사이트 내용을 가져옵니다.
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                websiteContent.innerHTML = xhr.responseText;
+            }
+        };
+        xhr.open("GET", websiteUrl, true);
+        xhr.send();
+    }
+</script>
+</html>
